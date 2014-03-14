@@ -12,7 +12,6 @@ class LinearLattice(VectorSpace):
 
         return [for x in xs: subspaces[x]]
 
-<<<<<<< HEAD
     def is3clust(self,fam):
     	k = fam[0].dimension()
     	intersect = fam[0].intersection(fam[1].intersection(fam[2]))
@@ -20,10 +19,3 @@ class LinearLattice(VectorSpace):
 
     	return intersection.dimension() == 0 and vsum.dimension() <= 2*k
 
-=======
-
-    def detect_2_cluster(self, fam):
-        
-
-    
->>>>>>> 601dd699902749eb30505ad7ab1277a8aafaecd9
