@@ -11,3 +11,9 @@ class LinearLattice(VectorSpace):
         xs = [for i in range(size): r.randint(0,len(subspaces))]
 
         return [for x in xs: subspaces[x]]
+
+
+    def detect_2_cluster(self, fam):
+        
+
+    
