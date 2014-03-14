@@ -2,7 +2,7 @@ import random as r
 
 class LinearLattice(VectorSpace):
 
-    def __init__(self, dim, f):
+    def __init__(self, f, dim):
         return VectorSpace(GF(f),dim)
 
     def random_family(self, k, size):
