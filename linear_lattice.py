@@ -86,33 +86,28 @@ def choose(n,k,q):
     # [n]! / ([n-k]![k]!)
     return num / denom
 
-def cluster_density(s, size, q):
+def cluster_density(s, n, k, q):
     results = []
 
-    for n in range(3,7):
-        r = []
+    num_subspaces = choose(n,k,q)
+    bound = choose(n-1,k-1,q)
 
-        for k in range(2,4):
-            if choose(n,k,q)-1 < size or k > n/2:
-                r.append(0)
-                continue
+    for fam_size in range(3,bound):
 
-            # generate inclusion matrix
-            inclusion_matrix = inclusion(n,q,1,k)
-            families = []
-            count = 0
+        # generate inclusion matrix
+        inclusion_matrix = inclusion(n,q,1,k)
+        families = []
+        count = 0
 
-            # generate s random families of size l
-            for i in range(s):
-                families.append(rand.sample(range(choose(n,k,q)-1), size))
+        # generate s random families of size l
+        for i in range(s):
+            families.append(rand.sample(range(num_subspaces-1), fam_size))
 
-            # check which families have a 3 cluster
-            for f in families:
-                count += 1 if detect_3_cluster(f,inclusion_matrix,k) else 0
+        # check which families have a 3 cluster
+        for f in families:
+            count += 1 if detect_3_cluster(f,inclusion_matrix,k) else 0
 
-            r.append(count)
-
-        results.append(r)
+        results.append((fam_size,count))
 
     return results
 
