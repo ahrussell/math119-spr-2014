@@ -35,12 +35,12 @@ def random_family(subspaces, size):
 
     return [subspaces[x] for x in xs]
 
-# def is3clust(fam):
-#     k = fam[0].dimension()
-#     intersect = fam[0].intersection(fam[1].intersection(fam[2]))
-#     vsum = sum(fam)
-# 
-#     return intersect.dimension() == 0 and vsum.dimension() <= 2*k
+def is3clust(fam):
+    k = fam[0].dimension()
+    intersect = fam[0].intersection(fam[1].intersection(fam[2]))
+    vsum = sum(fam)
+
+    return intersect.dimension() == 0 and vsum.dimension() <= 2*k
 
 def detect_3_cluster(fam,inc,k):
     m = len(fam)
@@ -62,7 +62,7 @@ def is_3clust(xs, inc, k):
     weight = sum([1 for x in col if x != 0])
     height = max(col)
 
-    return weight < 2*k and height <= 2
+    return weight <= 2*k and height <= 2
 
 def bracket(n,q):
     return (q**n - 1) / (q - 1)
